@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Formulário de Cadastro</title>
+
+    <script>
+        function aplicarMascara(input, mascara) {
+            let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            let posicao = 0;
+    
+            input.value = mascara.replace(/x/g, () => valor[posicao++] || '');
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputNascimento = document.getElementById('nascimento');
+            const inputTelefone = document.getElementById('telefone');
+    
+            // Máscara para Data de Nascimento
+            inputNascimento.addEventListener('input', function() {
+                aplicarMascara(inputNascimento, 'xx/xx/xxxx');
+            });
+    
+            // Máscara para Telefone
+            inputTelefone.addEventListener('input', function() {
+                aplicarMascara(inputTelefone, '(xx) xxxxx-xxxx');
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Aluno</h1>
+<form action="/users/submit" method="POST">
+    <label for="nome">Nome do Aluno:</label>
+    <input type="text" id="nome" name="nome" required><br>
+
+    <label for="nascimento">Data de Nascimento:</label>
+    <input type="text" id="nascimento" name="nascimento" placeholder="dd/mm/aaaa" required><br>
+
+    <label for="nomeMae">Nome da Mãe:</label>
+    <input type="text" id="nomeMae" name="nomeMae" required><br>
+
+    <label for="nomePai">Nome do Pai:</label>
+    <input type="text" id="nomePai" name="nomePai" required><br>
+
+    <label for="telefone">Telefone (DDD):</label>
+    <input type="text" id="telefone" name="telefone" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="serie">Série:</label>
+    <select id="serie" name="serie" required>
+        <option value="pre-escolar">Pré-Escolar</option>
+        <option value="graduacao">Graduação</option>
+    </select><br>
+
+    <label>Turno:</label>
+    <input type="radio" id="manha" name="turno" value="manhã" required>
+    <label for="manha">Manhã</label>
+    <input type="radio" id="tarde" name="turno" value="tarde" required>
+    <label for="tarde">Tarde</label><br>
+
+    <label>Atividades Extracurriculares:</label><br>
+    <input type="checkbox" name="atividades" value="informatica"> Informática<br>
+    <input type="checkbox" name="atividades" value="musica"> Música<br>
+    <input type="checkbox" name="atividades" value="balet"> Balet<br>
+    <input type="checkbox" name="atividades" value="pintura"> Pintura<br>
+    <input type="checkbox" name="atividades" value="judo"> Judô<br>
+    <input type="checkbox" name="atividades" value="futebol"> Futebol<br><br>
+
+    <div class="buttons">
+        <button type="submit" class="btn">Enviar Formulário</button>
+        <button type="reset" class="btn">Limpar Campos</button>
+    </div>
+</form>
+        
+    </div>
+</body>
+</html>
